@@ -14,8 +14,8 @@ class UserSeeder extends Seeder
         $faker = Faker::create('id_ID');
 
         User::create([
-            'name' => 'Muhamad Irga Khoirul Mahfis',
-            'email' => 'mikmself@gmail.com',
+            'name' => 'Administrator',
+            'email' => 'admin@gmail.com',
             'telp' => '081229473829',
             'level' => 'admin',
             'password' => Hash::make('admin123')
