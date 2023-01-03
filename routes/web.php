@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
@@ -43,6 +44,14 @@ Route::middleware('auth')->group(function () {
                 Route::get('/edit/{id}',[UserController::class,'edit'])->name('edituser');
                 Route::post('/update/{id}',[UserController::class,'update'])->name('updateuser');
                 Route::get('/destroy/{id}',[UserController::class,'destroy'])->name('destroyuser');
+            });
+            Route::prefix('admin')->group(function () {
+                Route::get('/',[AdminController::class,'index'])->name('indexadmin');
+                Route::get('/create',[AdminController::class,'create'])->name('createadmin');
+                Route::post('/store',[AdminController::class,'store'])->name('storeadmin');
+                Route::get('/edit/{id}',[AdminController::class,'edit'])->name('editadmin');
+                Route::post('/update/{id}',[AdminController::class,'update'])->name('updateadmin');
+                Route::get('/destroy/{id}',[AdminController::class,'destroy'])->name('destroyadmin');
             });
         });
     });

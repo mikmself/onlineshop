@@ -8,16 +8,15 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Throwable;
 
-class UserController extends Controller
+class AdminController extends Controller
 {
-    public function index(Request $request)
-    {
-        $users = User::where('level','user')->get();
-        return response()->view('dashboard.master.user.index',compact('users'));
+    public function index(){
+        $users = User::where('level','admin')->get();
+        return response()->view('dashboard.master.admin.index',compact('users'));
     }
     public function create()
     {
-        return response()->view('dashboard.master.user.create');
+        return response()->view('dashboard.master.admin.create');
     }
     public function store(Request $request)
     {
@@ -40,7 +39,7 @@ class UserController extends Controller
                     'name' => $request->input('name'),
                     'email' => $request->input('email'),
                     'password' => Hash::make($request->input('password')),
-                    'level' => "user",
+                    'level' => "admin",
                     'telp' => $request->input('telp')
                 ]);
                 if($isCreated){
@@ -61,7 +60,7 @@ class UserController extends Controller
         $user = User::whereId($id)->first();
         $isExist = isset($user);
         if($isExist){
-            return response()->view('dashboard.master.user.edit',compact('user'));
+            return response()->view('dashboard.master.admin.edit',compact('user'));
         }else{
             //
             return back();
@@ -89,7 +88,7 @@ class UserController extends Controller
                     'name' => $request->input('name'),
                     'email' => $request->input('email'),
                     'password' => Hash::make($request->input('newpassword')),
-                    'telp' => $request->input('telp')
+                    'telp' => $request->input('telp'),
                 ]);
                 if($isUpdated){
                     //

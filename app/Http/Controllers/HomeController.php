@@ -75,7 +75,7 @@ class HomeController extends Controller
         }
     }
     public function indexCart(){
-        $carts = Cart::get();
+        $carts = Cart::where('user_id',auth()->user()->id)->get();
         return view('feuser.cart',compact('carts'));
     }
     public function addToCart($id){
